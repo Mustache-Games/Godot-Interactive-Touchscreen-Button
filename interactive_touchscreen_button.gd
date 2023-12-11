@@ -42,7 +42,7 @@ func release():
 	released = true
 
 
-func is_in(pos:Vector2) -> bool:
+func is_inside(pos:Vector2) -> bool:
 	if int(pos.x) in range(position.x, position.x+size.x) :
 		if int(pos.y) in range(position.y, position.y+size.y) :
 			return true
@@ -51,7 +51,7 @@ func is_in(pos:Vector2) -> bool:
 
 func _input(event):
 	if event is InputEventScreenTouch :
-		if event.pressed :
+		if event.pressed and is_inside(event.position) : 
 			if released :
 				touch_index = event.index
 			if touch_index == event.index :
