@@ -10,7 +10,9 @@ Download the [script](https://github.com/Mustache-Games/Godot-Interactive-Touchs
 
 **How it works?**
 
-[![YouTube video](https://img.youtube.com/vi/mdNc1ZAJQpM/0.jpg)](https://www.youtube.com/watch?v=mdNc1ZAJQpM)
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=mdNc1ZAJQpM
+" target="_blank"><img src="http://img.youtube.com/vi/mdNc1ZAJQpM/0.jpg" 
+alt="YouTube video" width="240" height="180" border="10" /></a>
 
 **Support this project ♥️**
 If you would like to support this project you can always buy me a coffee on [Ko-Fi](https://ko-fi.com/mustachegames).
