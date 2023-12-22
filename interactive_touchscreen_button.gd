@@ -51,7 +51,7 @@ func is_inside(pos:Vector2) -> bool:
 
 func _input(event):
 	if event is InputEventScreenTouch :
-		if event.pressed and is_inside(event.position) : 
+		if is_visible_in_tree() and event.pressed and is_inside(event.position) : 
 			if released :
 				touch_index = event.index
 			if touch_index == event.index :
