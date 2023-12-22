@@ -1,7 +1,7 @@
 # Godot Interactive Touchscreen Button
 ## A custom Godot node that breaks the limits of *ThouchScreenButton* to resize responsively on different screen sizes while maintaining the multi-touch.
 
-**This version will only work on Godot 4.x click here for the Godot 3.x branch.**
+**This version will only work on Godot 4.x click [here](https://github.com/Mustache-Games/Godot-Interactive-Touchscreen-Button/tree/Godot-Interactive-Touchscreen-Button-Godot-3.x) for the Godot 3.x branch.**
 
 **How to use?**
 
