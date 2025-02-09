@@ -12,7 +12,7 @@ const DefaultValues := {
 
 @export var input_action:StringName
 @export var use_default_values := true
-@export var touchscreem_only := false
+@export var touchscreen_only := false
 
 var touch_index := 0
 var released := true
@@ -22,7 +22,7 @@ func _init():
 		for k in DefaultValues.keys() :
 			self.set(k, DefaultValues.get(k))
 	
-	if touchscreem_only and not DisplayServer.is_touchscreen_available() :
+	if touchscreen_only and not DisplayServer.is_touchscreen_available() :
 		hide()
 
 
@@ -43,9 +43,9 @@ func release():
 
 
 func is_in(pos:Vector2) -> bool:
-	if int(pos.x) in range(position.x, position.x+size.x) :
-		if int(pos.y) in range(position.y, position.y+size.y) :
-			return true
+	if int(pos.x) in range(global_position.x, global_position.x+size.x) :
+		if int(pos.y) in range(global_position.y, global_position.y+size.y) :
+			return true 
 	return false
 
 
