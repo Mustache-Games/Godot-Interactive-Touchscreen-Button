@@ -40,8 +40,8 @@ func release() -> void :
 
 
 func is_inside(pos:Vector2) -> bool :
-	if int(pos.x) in range(rect_position.x, rect_position.x+(rect_size.x*rect_scale.x)) :
-		if int(pos.y) in range(rect_position.y, rect_position.y+(rect_size.y*rect_scale.y)) :
+	if int(pos.x) in range(rect_global_position.x, rect_global_position.x+(rect_global_size.x*rect_scale.x)) :
+		if int(pos.y) in range(rect_global_position.y, rect_global_position.y+(rect_size.y*rect_scale.y)) :
 			return true
 	return false
 
