@@ -8,7 +8,7 @@ const DefaultValues := {
 	"focus_mode" : TextureButton.FOCUS_NONE,
 }
 
-@export var input_action:StringName
+@export_custom(PROPERTY_HINT_INPUT_NAME, "") var input_action:StringName 
 @export var use_default_values := true
 @export var touchscreen_only := false
 
