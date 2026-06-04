@@ -1,12 +1,10 @@
 @icon("res://Interactive Touchscreen Button.svg")
 class_name InteractiveTouchscreenButton
-extends TextureButton
+extends Button
 
 const DefaultValues := {
-	"expand" : true,
-	"ignore_texture_size" : true,
-	"stretch_mode" : TextureButton.STRETCH_KEEP_ASPECT_CENTERED,
-	"action_mode" : TextureButton.ACTION_MODE_BUTTON_PRESS,
+	"expand_icon" : true,
+	"action_mode" : Button.ACTION_MODE_BUTTON_PRESS,
 	"focus_mode" : TextureButton.FOCUS_NONE,
 }
 
@@ -16,15 +14,19 @@ const DefaultValues := {
 
 var touch_index := 0
 var released := true
+var button_toggled := false
+var is_pressed:= false
 
-func _init():
+func _ready() -> void:
 	if use_default_values :
 		for k in DefaultValues.keys() :
 			self.set(k, DefaultValues.get(k))
+			
 	
-	if touchscreen_only and not DisplayServer.is_touchscreen_available() :
+	#hide  and disable the button if there's no touchscreen
+	if touchscreen_only and not DisplayServer.is_touchscreen_available():
 		hide()
-
+		set_disabled(true)
 
 func press():
 	var event = InputEventAction.new()
@@ -48,15 +50,34 @@ func is_in(pos:Vector2) -> bool:
 			return true 
 	return false
 
+func _process(delta: float) -> void:
+	if toggle_mode:
+		if button_toggled: press()
+		elif not button_toggled and is_pressed: release()
+	
 
-func _input(event):
-	if event is InputEventScreenTouch :
+func _input(event: InputEvent) -> void:
+	if event is InputEventScreenTouch:
 		if event.pressed and is_in(event.position) :
+			is_pressed = true
+			
+			if toggle_mode:
+				if not button_toggled: button_toggled = true
+				else: button_toggled = false
+
 			if released :
 				touch_index = event.index
 			if touch_index == event.index :
 				press()
-			else :
-				release()
+				
+				
+			else:
+				if not toggle_mode:
+					release()
+				
+	
 		if touch_index == event.index and not event.pressed :
-			release()
+			if not toggle_mode:
+				release()
+			
+			
