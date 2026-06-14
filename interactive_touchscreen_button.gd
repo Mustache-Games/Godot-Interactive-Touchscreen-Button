@@ -18,11 +18,11 @@ var touch_index := 0
 var released := true
 
 func _init():
-	if use_default_values :
-		for k in DefaultValues.keys() :
+	if use_default_values:
+		for k in DefaultValues.keys():
 			self.set(k, DefaultValues.get(k))
-	
-	if touchscreen_only and not DisplayServer.is_touchscreen_available() :
+
+	if touchscreen_only and not DisplayServer.is_touchscreen_available():
 		hide()
 
 
@@ -43,20 +43,25 @@ func release():
 
 
 func is_in(pos:Vector2) -> bool:
-	if int(pos.x) in range(global_position.x, global_position.x+size.x) :
-		if int(pos.y) in range(global_position.y, global_position.y+size.y) :
+	if int(pos.x) in range(global_position.x, global_position.x + size.x):
+		if int(pos.y) in range(global_position.y, global_position.y + size.y):
 			return true 
 	return false
 
 
 func _input(event):
-	if event is InputEventScreenTouch :
-		if event.pressed and is_in(event.position) :
-			if released :
-				touch_index = event.index
-			if touch_index == event.index :
-				press()
-			else :
+	if event is InputEventScreenTouch:
+		if not event.pressed:
+			if touch_index == event.index:
 				release()
-		if touch_index == event.index and not event.pressed :
-			release()
+			return
+			
+		if disabled:
+			return
+			
+		if is_in(event.position):
+			if released:
+				touch_index = event.index
+				press()
+			else:
+				release()
